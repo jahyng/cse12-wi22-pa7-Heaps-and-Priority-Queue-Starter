@@ -71,7 +71,6 @@ public class MyMinHeap<E extends Comparable<E>> implements MinHeapInterface <E>{
     }
 
     protected E deleteIndex(int index) {
-
     }
 
 }
