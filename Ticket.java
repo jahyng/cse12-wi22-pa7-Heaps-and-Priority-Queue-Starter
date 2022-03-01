@@ -163,23 +163,25 @@ public class Ticket implements Comparable<Ticket>{
     }
     
     /**
-     * TODO: Method Header
+     * This method overrides the compareTo method. It compares the the current
+     * ticket and the ticket other. It compares the ticket type and the created
+     * at variables
+     * @param other Ticket that gives the other ticket to compare to
+     * @return negative number if current ticket comes before other
+     * @return positive int if the current ticket comes after the other
+     * @return 0 if both tickets are identical
      */
     @Override
     public int compareTo(Ticket other){
-        // tickets are equivalent
-        // if (this.ticketType.equals(other.ticketType) && this.createdAt.equals(other.createdAt)) {
-        //     return 0;
-        // }
-
-        // set the int for tickettype in the ordermap
         // same type different createdAt
-        if (orderMap.get(this.getTicketType()).compareTo(orderMap.get(other.ticketType)) == 0) {
-            return this.createdAt.compareTo(other.createdAt);
+        if (orderMap.get(this.getTicketType())
+            .compareTo(orderMap.get(other.getTicketType())) == 0) {
+                return this.createdAt.compareTo(other.createdAt);
         } 
         
         // different ticket type
-        else return orderMap.get(this.getTicketType()).compareTo(orderMap.get(other.ticketType));
+        else return orderMap.get(this.getTicketType()).
+            compareTo(orderMap.get(other.getTicketType()));
     }
  
     
