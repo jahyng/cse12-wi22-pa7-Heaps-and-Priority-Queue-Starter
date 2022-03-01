@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -137,7 +138,13 @@ public class MyMinHeap<E extends Comparable<E>> implements MinHeapInterface <E>{
             this.data.set(index, this.data.get(this.data.size() - 1));
         }
         this.percolateDown(index);
-        
+        int i = 0;
+        ArrayList<E> temp = new ArrayList<>(this.data.size());
+        while (i < this.data.size()) {
+            if (this.data.get(i) != null) temp.set(i, this.data.get(i));
+            i++;
+        }
+        this.data = temp;
         return elem;
     }
 
