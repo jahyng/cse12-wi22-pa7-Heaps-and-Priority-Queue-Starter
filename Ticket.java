@@ -167,9 +167,19 @@ public class Ticket implements Comparable<Ticket>{
      */
     @Override
     public int compareTo(Ticket other){
-        //TODO: Your code
-        return 0;
+        // tickets are equivalent
+        // if (this.ticketType.equals(other.ticketType) && this.createdAt.equals(other.createdAt)) {
+        //     return 0;
+        // }
 
+        // set the int for tickettype in the ordermap
+        // same type different createdAt
+        if (this.getTicketType().compareTo(other.getTicketType()) == 0) {
+            return this.getCreatedAt().compareTo(other.getCreatedAt());
+        } 
+
+        // different ticket type
+        else return this.getTicketType().compareTo(other.getTicketType());
     }
  
     
