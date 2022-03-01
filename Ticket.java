@@ -174,12 +174,12 @@ public class Ticket implements Comparable<Ticket>{
 
         // set the int for tickettype in the ordermap
         // same type different createdAt
-        if (this.getTicketType().compareTo(other.getTicketType()) == 0) {
-            return this.getCreatedAt().compareTo(other.getCreatedAt());
+        if (orderMap.get(this.getTicketType()).compareTo(orderMap.get(other.ticketType)) == 0) {
+            return this.createdAt.compareTo(other.createdAt);
         } 
-
+        
         // different ticket type
-        else return this.getTicketType().compareTo(other.getTicketType());
+        else return orderMap.get(this.getTicketType()).compareTo(orderMap.get(other.ticketType));
     }
  
     
