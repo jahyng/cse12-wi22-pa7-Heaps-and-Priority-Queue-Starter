@@ -1,24 +1,23 @@
 /**
- * TODO: Add your file header
- * Name:
- * ID:
- * Email:
- * Sources used: Put "None" if you did not have any external help
- * Some example of sources used would be Tutors, Zybooks, and Lecture Slides
+ * Name: Joshua Yang
+ * ID: A16667394
+ * Email: jwyang@ucsd.edu
+ * Sources used: None
  * 
- * 2-4 sentence file description here
+ * This file contains the priority queue methods that use the methods 
+ * implemented in MyMinHepa.java.
  */
 
 import java.util.Collection;
 
 /**
- * TODO: Add Class Header
+ * This class uses the heap that was implemented in MyMinHeap.java to perform 
+ * various actions. Uses public instance of MyMinHeap heap to use heap methods
+ * on priority queue.
  */
 public class MyPriorityQueue<E extends Comparable<E>>
 {
 
-    //TODO: Add a public instance variable called "heap"
-    //"heap" is of a generic MyMinHeap type
     public MyMinHeap<E> heap;
 
     

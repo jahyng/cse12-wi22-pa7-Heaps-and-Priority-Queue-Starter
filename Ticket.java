@@ -1,12 +1,11 @@
 /**
- * TODO: Add your file header
- * Name:
- * ID:
- * Email:
- * Sources used: Put "None" if you did not have any external help
- * Some example of sources used would be Tutors, Zybooks, and Lecture Slides
+ * Name: Joshua Yang
+ * ID: A16667394
+ * Email: jwyang@ucsd.edu
+ * Sources used: None
  * 
- * 2-4 sentence file description here
+ * This file has ticket class that also implements comaprable to compare the 
+ * tickets for priority. 
  */
 
 import java.util.HashMap;

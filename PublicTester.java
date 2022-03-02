@@ -189,7 +189,7 @@ public class PublicTester {
         Character[] expected = { 'D', 'E', 'D', 'G', 'Z', 'X' };
         for (int i = 0; i < 6; i++) {
             assertEquals(
-                "Heap after deleting index 0. ", 
+                "Heap after deleting index 0. " + i, 
                 expected[i], 
                 heap.data.get(i)
             );

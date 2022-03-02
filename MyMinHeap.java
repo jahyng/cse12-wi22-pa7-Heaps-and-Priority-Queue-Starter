@@ -78,9 +78,13 @@ public class MyMinHeap<E extends Comparable<E>> implements MinHeapInterface <E>{
      * @return smaller child index
      */
     protected int getMinChildIdx(int index) {
-        if (this.getRightChildIdx(index) >= this.data.size() || this.getLeftChildIdx(index) >= this.data.size()) {
+        // check if children index are out of bounds
+        if (this.getRightChildIdx(index) >= this.data.size() || 
+            this.getLeftChildIdx(index) >= this.data.size()) {
                 return -1;
         }
+
+        // set vars left and right for their children
         E left = this.data.get(this.getLeftChildIdx(index));
         E right = this.data.get(this.getRightChildIdx(index));
         
@@ -91,7 +95,7 @@ public class MyMinHeap<E extends Comparable<E>> implements MinHeapInterface <E>{
 
     /**
      * Percolate element at index up until no heap properties are violated by
-     * the element. DO this through swapping. 
+     * the element. Do this through swapping. 
      * @param index int giving index of the element to be percolated
      */
     protected void percolateUp(int index) {
@@ -110,7 +114,7 @@ public class MyMinHeap<E extends Comparable<E>> implements MinHeapInterface <E>{
 
     /**
      * Percolate element at index down until no heap properties are violated by 
-     * the element. Do this through swapping. 
+     * the element. Do this through swapping. DOne recursively.
      * @param index int giving the index of the element to be percolated
      */
     protected void percolateDown(int index) {
@@ -132,39 +136,57 @@ public class MyMinHeap<E extends Comparable<E>> implements MinHeapInterface <E>{
     protected E deleteIndex(int index) {
         E elem = this.data.get(index);
         // case when index is leaf
-        if (index >= this.data.size()) this.data.remove(index);
         // other cases
-        if (index < this.data.size()) {
-            this.data.set(index, this.data.get(this.data.size() - 1));
+        int lastIndex = this.data.size() - 1;
+        this.data.set(index, this.data.get(lastIndex));
+        this.data.remove(this.data.size() -1);
+
+        // check whether to use percolate up or down
+        if (this.getLeftChildIdx(index) < lastIndex 
+            && this.getRightChildIdx(index) < lastIndex) {
+            if (this.data.get(this.getLeftChildIdx(index)).
+                compareTo(this.data.get(index)) > 0 || 
+                this.data.get(this.getRightChildIdx(index)).
+                compareTo(this.data.get(index)) > 0) this.percolateUp(index);
+            else this.percolateDown(index);
         }
-        this.percolateDown(index);
-        int i = 0;
-        ArrayList<E> temp = new ArrayList<>(this.data.size());
-        while (i < this.data.size()) {
-            if (this.data.get(i) != null) temp.set(i, this.data.get(i));
-            i++;
-        }
-        this.data = temp;
         return elem;
     }
 
+    /**
+     * Insert given element to end of heap and then percolate up
+     * @param element Object that will be insered
+     */
     public void insert (E element) {
         if (element == null) throw new NullPointerException();
         this.data.add(element);
-        percolateUp(this.data.size() - 1);
+        this.percolateUp(this.data.size() - 1);
     }
 
+    /**
+     * Gets the smallest value/ the root value
+     * @return the root
+     */
     public E getMin() {
         if (this.data.size() == 0) return null;
         else return this.data.get(0);
 
     }
 
+    /**
+     * Removes the root, then replaces it with the last element. Then percolate
+     * down
+     * @return the former root
+     */
     public E remove() {
         if (this.data.size() == 0) return null;
         else return this.deleteIndex(0);
     }
 
+    /**
+     * Gets the size of heap
+     * @return the size of heap
+     */
     public int size() {
         int result = 0;
         for (int i = 0; i < this.data.size(); i++) {
@@ -173,9 +195,12 @@ public class MyMinHeap<E extends Comparable<E>> implements MinHeapInterface <E>{
         return result;
     }
 
+    /**
+     * Clears the heap. Size should be 0.
+     */
     public void clear() {
-        for (int i = 0; i < this.data.size(); i++) {
-            this.data.set(i, null);
+        while (this.data.size() > 0) {
+            this.deleteIndex(0);
         }
     }
 
